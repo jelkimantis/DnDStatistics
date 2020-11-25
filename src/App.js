@@ -16,8 +16,7 @@ class Stats extends React.Component {
     let modifierValue = (value-10)/2;
     this.setState({
       stat: value,
-      mod: modifierValue,
-      name: this.props.name
+      mod: modifierValue
     });
   }
   render(){
@@ -27,7 +26,7 @@ class Stats extends React.Component {
       value={this.state.stat}
       onChange={this.calculateMod}
       />
-      <h1>I should be {this.props.name}: {this.state.mod}</h1>
+      <h2>{this.props.name} Modifier: {this.state.mod}</h2>
     </div>
     );
   }
@@ -36,14 +35,15 @@ class Stats extends React.Component {
 class App extends React.Component {
   
   render(){
+    let statistics = ["STR", "DEX", "CON", "INT", "CHA", "WIS"];
+    let displayInformation = []
+    for (const stat in statistics){
+      displayInformation.push(<Stats name={statistics[stat]}/>)
+
+    }
     return (
       <div>
-        <Stats name="STR" />
-        <Stats name="DEX" />
-        <Stats name="CON" />
-        <Stats name="INT" />
-        <Stats name="CHA" />
-        <Stats name="WIS" />
+        {displayInformation}
       </div>
     );
   }
