@@ -22,16 +22,23 @@ class Stats extends React.Component {
   render(){
     return(
     <div>
-      <input
-      value={this.state.stat}
-      onChange={this.calculateMod}
-      />
-      <h2>{this.props.name} Modifier: {this.state.mod}</h2>
+     <div>
+       <span>Enter your {this.props.name} stat: </span>
+        <input
+          value={this.state.stat}
+          onChange={this.calculateMod}
+       />
+      </div>
+      <span><Modifier name={this.props.name} mod={this.state.mod} ></Modifier></span>
     </div>
     );
   }
 }
-
+function Modifier(props){
+  return(
+      <h2>{props.name} Modifier is: {props.mod}</h2>
+  )
+}
 class App extends React.Component {
   
   render(){
@@ -43,7 +50,12 @@ class App extends React.Component {
     }
     return (
       <div>
-        {displayInformation}
+        <div className="heading" id="heading">
+          {displayInformation}
+        </div>  
+        <div className="modifiers" id ="modifiers">
+
+        </div>
       </div>
     );
   }
